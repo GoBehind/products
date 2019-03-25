@@ -1,14 +1,20 @@
-# 讀取檔案 #.split(',') 用逗點分割 #.strip() 除掉換行符號
+import os #poerating system
+
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue #跳到下一個迴圈
-		name, price = line.strip().split(',')
-		products.append([name, price])
+if os.path.isfile('products.csv'):
+	with open('products.csv', 'r', encoding='utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue #跳到下一個迴圈
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	print(products)
 
-print(products)
+else:
+	print('找不到檔案')
 
+# 讀取檔案 #.split(',') 用逗點分割 #.strip() 除掉換行符號
+# 讓使用者輸入
 while True:
 	name = input('請輸入商品名稱: ')
 	if name == 'q':
